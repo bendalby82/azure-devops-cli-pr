@@ -34,6 +34,7 @@ foreach ($project in $projects) {
 foreach ($pr in $allprs){
 	$createdDate = [datetime]::parseexact($pr.Created.SubString(0,19),'yyyy-MM-ddTHH:mm:ss',$null)
 	$pr.Created = $createdDate
+	# Closed will be empty if the PR is still open at the time the report runs.
 	if (-NOT [string]::IsNullOrEmpty($pr.Closed)){
 		$closedDate = [datetime]::parseexact($pr.Closed.SubString(0,19),'yyyy-MM-ddTHH:mm:ss',$null)
 		$pr.Closed = $closedDate
